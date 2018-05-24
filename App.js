@@ -1,46 +1,65 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
-import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { Home } from './app/components/Home'
+import { SignIn } from './app/components/Sign-in'
+import { SignUp } from './app/components/Sign-up'
 
-const instructions = Platform.select({
-  ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
-  android:
-    "Double tap R on your keyboard to reload,\n" +
-    "Shake or press menu button for dev menu"
-});
 
-export default class App extends Component {
+const RootStack = StackNavigator(
+  {
+    Home: {
+      screen: Home,
+    },
+    SignIn: {
+      screen: SignIn,
+    },
+    SignUp: {
+      screen: SignUp,
+    }
+  },
+  {
+    initialRouteName: 'Home',
+  }
+
+);
+export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Hello my friend</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+
+      <View style = { styles.MainContainer }>
+         <RootStack />
+         <View style={ styles.bottomView} >
+          <Text style={styles.textStyle}>This is Bottom View.</Text>
+         </View>
+
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  MainContainer:
+  {
+      flex: 1,
+
+      // paddingTop: ( Platform.OS === 'ios' ) ? 20 : 0
+  },
+
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10
-  },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
+  bottomView:{
+    width: '100%',
+    height: 50,
+    backgroundColor: '#FF9800',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 0
   }
 });
