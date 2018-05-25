@@ -1,38 +1,108 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { StyleSheet, Text, View , Image } from 'react-native';
+import { StackNavigator , createBottomTabNavigator} from 'react-navigation';
 
-import { Home } from './app/components/Home'
+import { Map } from './app/components/map'
+import { CardShop } from './app/components/cardShop'
+import { Order } from './app/components/delivery'
 import { SignIn } from './app/components/Sign-in'
 import { SignUp } from './app/components/Sign-up'
+import { Home } from './app/components/Home'
+import { Profil } from './app/components/Profil'
 
 
-const RootStack = StackNavigator(
+//
+// const RootStack = StackNavigator(
+//   {
+//     Home: {
+//       screen: Home,
+//     },
+//     SignIn: {
+//       screen: SignIn,
+//     },
+//     SignUp: {
+//       screen: SignUp,
+//     },
+//     MapPharmacie: {
+//       screen: MapPharmacie,
+//     },
+//     RootBottomStack : RootBottomStack
+//   },
+//   {
+//     initialRouteName: 'Home',
+//   }
+//
+// );
+const RootBottomStack = createBottomTabNavigator(
   {
     Home: {
       screen: Home,
+      navigationOptions: {
+        // tabBarVisible: true ,
+        header : { HeaderProps :null } ,
+        headerBackImage: require('./app/assets/img/Facebook_Login_Button.png')
+      }
     },
-    SignIn: {
+    Map: {
+      screen: Map,
+      navigationOptions: () => ({
+          tabBarIcon: ({tintColor}) => (
+              <Image style={ styles.ImageIconStyle}
+                  source={require('./app/assets/img/map.png')}
+              />
+          )
+      })
+    },
+    CardShop: {
+      screen: CardShop,
+      navigationOptions: () => ({
+          tabBarIcon: ({tintColor}) => (
+              <Image style={ styles.ImageIconStyle}
+                  source={require('./app/assets/img/cart.png')}
+              />
+          )
+      })
+    },
+    Order: {
+      screen: Order,
+      navigationOptions: () => ({
+          tabBarIcon: ({tintColor}) => (
+              <Image style={ styles.ImageIconStyle}
+                  source={require('./app/assets/img/box.png')}
+              />
+          )
+      })
+    },
+    Profil: {
+       screen: Profil,
+       navigationOptions: () => ({
+           tabBarIcon: ({tintColor}) => (
+               <Image style={ styles.ImageIconStyle}
+                   source={require('./app/assets/img/man.png')}
+               />
+           )
+       })
+    },
+   SignIn: {
       screen: SignIn,
-    },
+      navigationOptions: { tabBarVisible: false  }
+   },
     SignUp: {
       screen: SignUp,
-    }
-  },
-  {
-    initialRouteName: 'Home',
+      navigationOptions: { tabBarVisible: false  }
+   },
+
   }
 
-);
+ );
+
 export default class App extends React.Component {
   render() {
     return (
 
       <View style = { styles.MainContainer }>
-         <RootStack />
-         <View style={ styles.bottomView} >
-          <Text style={styles.textStyle}>This is Bottom View.</Text>
-         </View>
+
+         <RootBottomStack />
 
       </View>
     );
@@ -53,13 +123,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  bottomView:{
-    width: '100%',
-    height: 50,
-    backgroundColor: '#FF9800',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    bottom: 0
+  ImageIconStyle: {
+     padding: 10,
+     margin: 5,
+     height: 25,
+     width: 25,
+     resizeMode : 'stretch',
+
   }
 });

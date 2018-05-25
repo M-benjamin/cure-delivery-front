@@ -5,20 +5,16 @@ import { StackNavigator } from 'react-navigation';
 
 export  class Home extends React.Component {
 
-    static navigationOptions = () => {
 
-       return { headerStyle: { backgroundColor: "#3c81f6" }, headerLeft:
-         <View>
-
-         </View>
-
-       }
-
-     }
     render(){
 
       return (
+
         <View style={styles.MainContainer}>
+        <Image   style={ styles.ImageLogoStyle}
+         source={require('../assets/img/logo.png')}
+         style={styles.ImageIconStyle}
+         />
         // ******* Button facebook ******
           <TouchableOpacity
             style={styles.FacebookStyle}
@@ -82,7 +78,7 @@ const styles = StyleSheet.create({
    flex: 1,
    justifyContent: 'center',
    alignItems: 'center',
-   margin: 10
+   // margin: 10
  },
 
  GooglePlusStyle: {
@@ -119,7 +115,13 @@ ButtonStyle: {
   margin: 5,
 
 },
-
+ImageLogoStyle: {
+   padding: 10,
+   margin: 5,
+   height: 150,
+   width: 150,
+   resizeMode : 'stretch',
+},
 ImageIconStyle: {
    padding: 10,
    margin: 5,

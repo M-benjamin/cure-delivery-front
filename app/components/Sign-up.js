@@ -5,17 +5,6 @@ import { StackNavigator } from 'react-navigation';
 
 export  class SignUp extends React.Component {
 
-    static navigationOptions = () => {
-
-       return { headerStyle: { backgroundColor: "#3c81f6" }, headerLeft:
-         <View>
-            <TouchableOpacity>
-            </TouchableOpacity>
-         </View>
-
-       }
-
-     }
      constructor(props) {
        super(props);
        this.state = { email: ' your email',
