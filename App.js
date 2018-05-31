@@ -5,35 +5,16 @@ import { Provider } from "react-redux";
 import { configureStore } from "./app/store";
 const { persistor, store } = configureStore();
 import { PersistGate } from "redux-persist/integration/react";
+// import { createReduxBoundAddListener } from "react-navigation-redux-helpers";
+import AppNavigation from "./app/navigators/AppNavigator";
 
-import { Home } from "./app/components/Home";
-import SignIn from "./app/components/Sign-in";
-import { SignUp } from "./app/components/Sign-up";
-
-// const RootStack = StackNavigator(
-//   {
-//     Home: {
-//       screen: Home
-//     },
-//     SignIn: {
-//       screen: SignIn
-//     },
-//     SignUp: {
-//       screen: SignUp
-//     }
-//   },
-//   {
-//     initialRouteName: "Home"
-//   }
-// );
+console.disableYellowBox = true;
 
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <Home />
-        </PersistGate>
+        <AppNavigation />
       </Provider>
     );
   }
